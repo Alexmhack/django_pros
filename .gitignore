@@ -105,3 +105,6 @@ venv.bak/
 
 # SECRET KEY
 secret_key
+
+# migrations folder
+products/migrations
