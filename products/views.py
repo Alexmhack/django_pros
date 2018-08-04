@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
+from django.http import HttpResponse
 
 from .forms import ContactForm
 
 def contact_view(request):
-	contact_form = ContactForm()
+	contact_form = ContactForm
 
 	if request.method == "POST":
 		form = contact_form(data=request.POST)
@@ -40,4 +41,4 @@ def contact_view(request):
 
 
 def home_view(request):
-	return "<h1>Home page</h1>"
+	return HttpResponse("<h1>Home page</h1>")
