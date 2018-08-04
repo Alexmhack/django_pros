@@ -35,13 +35,9 @@ def contact_view(request):
 			)
 
 			email.send()
-			return redirect('contact_confirm')
+			return render(request, 'contact_confirm.html')
 
 	return render(request, 'contact_form.html', {'contact_form': contact_form})
-
-
-def contact_confirm_view(request):
-	return render(request, 'contact_confirm.html')
 
 
 def home_view(request):
