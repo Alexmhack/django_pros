@@ -6,7 +6,8 @@
 	<p>Our About page is nice</p>
 
 	<p>
-		{{ title }}
+		{{ title|capfirst }}
+		{{ number|add:50 }}
 	</p>
 
 {% endblock %}
