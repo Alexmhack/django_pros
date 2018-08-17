@@ -27,3 +27,11 @@ from django.shortcuts import render
 We can activate our view using the request that our browser sends when we look for the url, we get 
 accept that url using the request arg and render takes in the request, renders our html file and also
 a context dict that we can use in our html
+
+```
+{{ request.user }} | {{ request.user.is_authenticated }}
+```
+
+request is an object that django passes with each url and it has many properties like the user which
+tells which is the current user that is accessing the url or we can check if the user is 
+authenticated in the admin users, it will return a boolean value.
