@@ -35,3 +35,17 @@ a context dict that we can use in our html
 request is an object that django passes with each url and it has many properties like the user which
 tells which is the current user that is accessing the url or we can check if the user is 
 authenticated in the admin users, it will return a boolean value.
+
+```
+{{ title|title }} | {{ title|capfirst }}
+{{ html_context|safe }} | {{ html_context|striptags }}
+{{ number|add:50 }}
+```
+
+There are a ton of template filter tags that can ease our work in the html itself, we use filters by 
+placing a | pipe after the context variable and then using our filter
+
+|add filter adds a number or number in a string to another number context
+|title makes the context a title, with capital letter, |capfirst also does the same
+|safe is used when we have html tags in the context variable itself and we want html to render
+|striptags strips the html tags and only renders the words
