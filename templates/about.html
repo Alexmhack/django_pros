@@ -5,10 +5,10 @@
 	<h1>About</h1>
 	<p>Our About page is nice</p>
 
-	{{ html|safe }}
+	{{ html|striptags }}
 
 	<p>
-		{{ title|capfirst }}
+		{{ title|title }}
 		{{ number|add:50 }}
 	</p>
 
