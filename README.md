@@ -12,3 +12,10 @@ the admin site, and blank=False means this field is required and it will appear 
 null=True means that this field can have a null value in the database, which means that this field 
 will be there in database but with a empty value and null=False means this field has to have a value
 to be stored in the database.
+
+```
+from django.http import HttpResponse
+```
+
+We can render raw html on the page using the HttpResponse method, by just wrapping our html with this 
+method
