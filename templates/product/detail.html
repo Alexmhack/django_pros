@@ -2,11 +2,13 @@
 
 {% block content %}
 	
-	<h3>{{ title}}</h3>
+	<h3>{{ object.title}}</h3>
 	{% if description and description != '' %}
-		<p>{{ description }}</p>
+		<p>{{ object.description }}</p>
 	{% else %}
 		<p>Description coming soon...</p>
 	{% endif %}
+
+	<p>{{ object.price }}</p>
 
 {% endblock %}
