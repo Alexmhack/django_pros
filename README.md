@@ -19,3 +19,11 @@ from django.http import HttpResponse
 
 We can render raw html on the page using the HttpResponse method, by just wrapping our html with this 
 method
+
+```
+from django.shortcuts import render
+```
+
+We can activate our view using the request that our browser sends when we look for the url, we get 
+accept that url using the request arg and render takes in the request, renders our html file and also
+a context dict that we can use in our html
