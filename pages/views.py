@@ -10,4 +10,7 @@ def contact_view(request, *args, **kwargs):
 
 
 def about_view(request):
-	return render(request, 'about.html', {})
+	context = {
+		"title": "About Django Store"
+	}
+	return render(request, 'about.html', context)
