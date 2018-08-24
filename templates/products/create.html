@@ -2,9 +2,8 @@
 
 {% block content %}
 
-	<form method="POST">
-		{% csrf_token %}
-		{{ form.as_p }}
+	<form action="https://www.google.com/search" method="GET">
+		<input type="text" name="q" placeholder="Your search">
 		<input type="submit" value="Save">
 	</form>
 
