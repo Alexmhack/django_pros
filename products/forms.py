@@ -3,6 +3,16 @@ from django import forms
 from .models import Product
 
 class ProductForm(forms.ModelForm):
+	title = forms.CharField(
+		label='',
+		widget=forms.TextInput(
+			attrs={
+				"placeholder": "Your Title",
+				"class": "form-control"
+			}
+		)
+	)
+			
 	class Meta:
 		model = Product
 		fields = [
