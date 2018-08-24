@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Product
 from .forms import ProductForm, RawProductForm
 
-def product_detail_view(request):
-	obj = Product.objects.all()
+def product_detail_view(request, id):
+	object = get_object_or_404(Product, id=id)
 	context = {
-		'object': obj
+		'object': object
 	}
 	return render(request, 'products/detail.html', context)
 
