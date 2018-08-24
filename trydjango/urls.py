@@ -24,6 +24,7 @@ from pages.views import (
 
 from products.views import (
     product_detail_view,
+    product_create_view,
 )
 
 urlpatterns = [
@@ -32,4 +33,5 @@ urlpatterns = [
     path('contact/', contact_view, name='contact'),
     path('about/', about_view, name='about'),
     path('product/', product_detail_view, name='product'),
+    path('create/', product_create_view, name='product-create'),
 ]
