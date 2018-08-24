@@ -7,12 +7,11 @@ class ProductForm(forms.ModelForm):
 		label='',
 		widget=forms.TextInput(
 			attrs={
-				"placeholder": "Your Title",
+				"placeholder": "Your Product Name",
 				"class": "form-control"
 			}
 		)
 	)
-	email = forms.EmailField()
 	description = forms.CharField(
 		required=False,
 		widget=forms.Textarea(
@@ -34,17 +33,6 @@ class ProductForm(forms.ModelForm):
 			'price'
 		]
 
-	def clean_title(self, *args, **kwargs):
-		title = self.cleaned_data.get('title')
-		if "DJGO" not in title:
-			raise forms.ValidationError("This is not a valid title")
-		return title
-
-	def clean_email(self, *args, **kwargs):
-		email = self.cleaned_data.get('email')
-		if not email.endswith("edu"):
-			raise forms.ValidationError("This is not a valid edu email")
-		return email
 
 class RawProductForm(forms.Form):
 	title = forms.CharField(
