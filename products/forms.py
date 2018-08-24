@@ -12,7 +12,19 @@ class ProductForm(forms.ModelForm):
 			}
 		)
 	)
-			
+	description = forms.CharField(
+		required=False,
+		widget=forms.Textarea(
+			attrs={
+				"class": "form-control",
+				"rows": 4,
+				"cols": 50,
+				'placeholder': "Your Description"
+			}
+		)
+	)
+	price = forms.DecimalField(initial=299.99)
+
 	class Meta:
 		model = Product
 		fields = [
