@@ -11,6 +11,14 @@ def product_detail_view(request, id):
 	return render(request, 'products/detail.html', context)
 
 
+def product_list_view(request):
+	products = Product.objects.all()
+	context = {
+		'products': products
+	}
+	return render(request, 'products/list.html', context)
+
+
 def product_create_view(request):
 	initial_data = {
 		'title': 'ASUS Laptop',
