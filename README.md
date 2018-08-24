@@ -182,3 +182,38 @@ in the Textarea()
 ```
 
 There are a lot of fields and widgets in [Django Forms](https://docs.djangoproject.com/en/2.1/ref/forms/fields/)
+
+# Django Form Validation
+Django comes with highly advanced and self-sufficient fields validations, we won't ever be 
+overriding those validations but we can add our custom validation methods in form class 
+using a simple syntax for validation methods
+
+In our forms we will add a sample validation method just for learning purposes which will 
+simply check if a word appears in the title field of form
+
+**products/forms.py**
+```
+	class ProductForm(forms.ModelForm):
+	...
+	def clean_title(self, *args, **kwargs):
+		title = self.cleaned_data.get('title')
+		if "DJGO" not in title:
+			raise forms.ValidationError("This is not a valid title")
+		return title
+	...
+```
+**NOTE:** clean_title is not just a simple method which django will call when we call it in 
+our views like ```object.clean_title()```, this a special method that will be validating 
+title field, we do this by getting the title from our cleaned_data and then just use a 
+simple if statement which will raise validation error that comes built-in in django.forms
+otherwise if everything is fine we return our title
+
+*Syntax for clean method*
+```
+def clean_<field_name>():
+	field_name = self.cleaned_data.get('field_name')
+	# some validation here	
+```
+
+This simple clean method syntax can be used for all fields and we can have as many if 
+statements that check our field as we want
