@@ -12,6 +12,7 @@ class ProductForm(forms.ModelForm):
 			}
 		)
 	)
+	email = forms.EmailField()
 	description = forms.CharField(
 		required=False,
 		widget=forms.Textarea(
@@ -39,6 +40,11 @@ class ProductForm(forms.ModelForm):
 			raise forms.ValidationError("This is not a valid title")
 		return title
 
+	def clean_email(self, *args, **kwargs):
+		email = self.cleaned_data.get('email')
+		if not email.endswith("edu"):
+			raise forms.ValidationError("This is not a valid edu email")
+		return email
 
 class RawProductForm(forms.Form):
 	title = forms.CharField(
