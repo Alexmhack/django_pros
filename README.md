@@ -68,3 +68,117 @@ Now you can import the model and use the objects to access data
 
 There are a ton of features that our model objects support which can be found at django2 
 docs at official website.
+
+# Django Forms
+The module for creating forms in django is the *forms* and we separate our forms by 
+creating new file just for our forms
+
+**products/forms.py**
+```
+from django import forms
+```
+
+Their are many ways for creating a form, you can use the model itself for creating one or
+just make the form completely fulfilling your requirements
+
+**Model Form in django**
+```
+from django import forms
+
+class ProductForm(forms.ModelForm):
+	class Meta:
+		model = Product
+		fields = [
+			'title',
+			'description',
+			'price'
+		]
+
+```
+
+ModelForm class needs a model upon which it can create the form and you have to define the 
+fields that the form will have, for all fields use ```fields = "__all__"```
+
+The other way is defining your own fields.
+
+```
+from django import forms
+
+class RawProductForm(forms.Form):
+	title = forms.CharField()
+	description = forms.CharField()
+	price = forms.DecimalField()
+
+```
+
+The advantage of using raw fields in our form is that we can use the features of the forms
+fields and make our form more nicer looking in html. Some of the features are
+
+```
+required=False	 (default is True so we don't mention it in field)
+label=''	(default is the name of field but we can override it or just make it empty and use label tags)
+attrs={} 	(a dict that can have many key value pair)
+```
+
+**products/forms.py**
+```
+class RawProductForm(forms.Form):
+	title = forms.CharField(
+		label='',
+		widget=forms.TextInput(
+			attrs={
+				"placeholder": "Your Title",
+				"class": "form-control",
+			}
+		)
+	)
+	description = forms.CharField(
+		required=False,
+		widget=forms.Textarea(
+			attrs={
+				"class": "form-control",
+				"rows": 4,
+				"cols": 50,
+				'placeholder': "Your Description"
+			}
+		)
+	)
+	price = forms.DecimalField(initial=299.99)
+
+```
+
+In our attrs dictionary we can give a key of "class" which will then be included in our 
+input tags as classes of CSS, here we used "form-control" which a mdbootstrap class for 
+nicer looking forms. Placholder will give us a nice text displayed in our form.
+
+django.forms does not have a TextField like we have in models so instead of that we use 
+widgets in forms.CharField() to render the field as a text field
+
+**products/forms.py**
+```
+	...
+	description = forms.CharField(required=False, widget=forms.Textarea)
+	...
+```
+
+Either you can just use the default text area made by widget or specify your requirements 
+in the Textarea()
+
+**products/forms.py**
+```
+	...
+	description = forms.CharField(
+			required=False,
+			widget=forms.Textarea(
+				attrs={
+					"class": "form-control",
+					"rows": 4,
+					"cols": 50,
+					'placeholder': "Your Description"
+				}
+			)
+		)
+	...
+```
+
+There are a lot of fields and widgets in [Django Forms](https://docs.djangoproject.com/en/2.1/ref/forms/fields/)
