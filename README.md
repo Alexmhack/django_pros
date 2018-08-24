@@ -49,3 +49,22 @@ placing a | pipe after the context variable and then using our filter
 |title makes the context a title, with capital letter, |capfirst also does the same
 |safe is used when we have html tags in the context variable itself and we want html to render
 |striptags strips the html tags and only renders the words
+
+# Getting data from database
+For getting the data from our database we can use the model objects, we can play around 
+with the database model in django shell, run shell using
+
+```
+> python manage.py shell
+```
+
+Now you can import the model and use the objects to access data
+
+```
+>>> from products.models import Product
+>>> Product.objects.all()
+>>> Product.objects.get(id=1)
+```
+
+There are a ton of features that our model objects support which can be found at django2 
+docs at official website.
