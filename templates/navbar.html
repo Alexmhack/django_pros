@@ -1,7 +1,9 @@
 <nav>
 	<ul>
-		<li><a href="" title="">Home</a></li>
-		<li><a href="" title="">About</a></li>
-		<li><a href="" title="">Contact</a></li>
+		<li><a href="{% url 'home' %}" title="">Home</a></li>
+		<li><a href="{% url 'about' %}" title="">About</a></li>
+		<li><a href="{% url 'contact' %}" title="">Contact</a></li>
+		<li><a href="{% url 'product-create' %}" title="">Create Product</a></li>
+		<li><a href="{% url 'product-list' %}" title="">Products</a></li>
 	</ul>
 </nav>
