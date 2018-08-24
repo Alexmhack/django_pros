@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+	<div class="container">
+
+		<ul>
+			{% for product in products %}
+				<li>
+					<a href="{% url 'product-detail' product.pk %}">
+						{{ product.title }}
+					</a>
+				</li>
+				<li>{{ product.description }}</li>
+				<li>{{ product.price }}</li>
+				<li>{{ product.summary }}</li>
+				<li class="mb-5">{{ product.featured }}</li>
+			{% endfor %}
+		</ul>
+
+	</div>
+
+{% endblock %}
