@@ -12,7 +12,11 @@ def product_detail_view(request):
 
 
 def product_create_view(request):
-	form = ProductForm(request.POST or None)
+	initial_data = {
+		'title': 'ASUS Laptop',
+		'description': 'Cheapest laptop with great features'
+	}
+	form = ProductForm(request.POST or None, initial=initial_data)
 	if request.method == "POST":
 		if form.is_valid():
 			print(form.cleaned_data)
