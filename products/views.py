@@ -12,9 +12,8 @@ def product_detail_view(request):
 
 
 def product_create_view(request):
-	form = RawProductForm()
+	form = RawProductForm(request.POST or None)
 	if request.method == "POST":
-		form = RawProductForm(request.POST)
 		if form.is_valid():
 			print(form.cleaned_data)
 			Product.objects.create(**form.cleaned_data)
