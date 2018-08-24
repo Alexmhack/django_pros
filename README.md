@@ -217,3 +217,43 @@ def clean_<field_name>():
 
 This simple clean method syntax can be used for all fields and we can have as many if 
 statements that check our field as we want
+
+**Setting Initial Data**
+One cool thing you might have seen would be that some websites render form which has some 
+data previously inserted in the form fields that is somewhat related to us or something,
+django forms can have that thing too using the ```initial``` attribute in the form itself,
+
+**products/views.py**
+```
+def product_create_view(request):
+	initial_data = {
+		'title': 'ASUS Laptop',
+		'description': 'Cheapest laptop with great features'
+	}
+	form = ProductForm(request.POST or None, initial=initial_data)
+	...
+```
+
+We simply insert the initial_data in the field by passing initial with that dict
+
+**NOTE:**The keys in the dict initial_data is the name of the form fields from our forms.py
+and the values of that dict represent the initial data that has to be in the form when form
+is requested with a GET request.
+
+**Updating Previous Data**
+Forms also provide us with the feature of updating our previous object that is in database
+by passing in the form our object as instance
+
+```
+def product_create_view(request):
+	initial_data = {
+		'title': 'ASUS Laptop',
+		'description': 'Cheapest laptop with great features'
+	}
+	object = Product.objects.get(id=1)
+	form = ProductForm(request.POST or None, initial=initial_data, instance=object)
+	...
+```
+
+But this is not what we might want to do when rendering form to users, this is just for our
+knowledge and learning
