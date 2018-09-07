@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Product
 from .forms import ProductForm, RawProductForm
@@ -38,9 +38,11 @@ def product_create_view(request):
 
 
 def product_delete_view(request, id):
-	obj = get_object_or_404(Product, id)
+	obj = get_object_or_404(Product, id=id)
 	if request.method == "POST":
+		# confirm delete
 		obj.delete()
+		return redirect('product-list')
 	context = {
 		'object': obj
 	}
