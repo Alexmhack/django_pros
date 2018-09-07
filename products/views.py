@@ -35,3 +35,13 @@ def product_create_view(request):
 		'form': form
 	}
 	return render(request, 'products/create.html', context)
+
+
+def product_delete_view(request, id):
+	obj = get_object_or_404(Product, id)
+	if request.method == "POST":
+		obj.delete()
+	context = {
+		'object': obj
+	}
+	return render(request, 'products/delete.html', context)
