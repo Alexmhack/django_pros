@@ -255,5 +255,69 @@ def product_create_view(request):
 	...
 ```
 
-But this is not what we might want to do when rendering form to users, this is just for our
-knowledge and learning
+But this is not what we might want to do when rendering form to users, this is just for 
+our knowledge and learning
+
+# Deleting Object
+Deleting a object is very simple. You just need to get the object and use the 
+```.delete()``` method on it
+
+**products/views.py**
+```
+from django.shortcuts import render, get_object_or_404, redirect
+
+...
+def product_delete_view(request, id):
+	obj = get_object_or_404(Product, id=id)
+	if request.method == "POST":
+		# confirm delete
+		obj.delete()
+		return redirect('product-list')
+	context = {
+		'object': obj
+	}
+	return render(request, 'products/delete.html', context)
+
+```
+
+In the above function based view we get the object using ```get_object_or_404``` and check
+the request method, it he method is ```"POST"``` that means someone has pressed the yes
+button in template then we delete the object and redirect to the ```product-list``` page
+
+**templates/products/delete.html**
+```
+{% extends "base.html" %}
+
+{% block content %}
+	
+	<form action='{% url "product-delete" object.id %}' method="POST">
+		{% csrf_token %}
+		<h1>Do you want to delete the product "{{ object.title }}"</h1>
+		<p><input type='submit' value='Yes'><a href="{% url 'product-list' %}">Cancel</a></p>
+	</form>
+
+{% endblock %}
+
+```
+
+We use a html form which has its action set to the url of the same page and method is 
+**POST** then we have two buttons one is submit button and other just takes us back to 
+products list
+
+**trydjango/urls.py**
+```
+from products.views import (
+    product_detail_view,
+    product_create_view,
+    product_list_view,
+    product_delete_view,
+)
+
+...
+    path('product/delete/<int:id>', product_delete_view, name='product-delete'),
+...
+```
+
+That's it we did the MVC Stuff and if you visit the url for delete view and press the yes
+button the object will get deleted from the database and you will be redirected to the 
+product list page and the deleted object no longer appears there.
