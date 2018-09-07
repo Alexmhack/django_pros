@@ -2,10 +2,10 @@
 
 {% block content %}
 	
-	<form action='.' method="POST">
+	<form action='{% url "product-delete" object.id %}' method="POST">
 		{% csrf_token %}
 		<h1>Do you want to delete the product "{{ object.title }}"</h1>
-		<p><input type='submit' value='Yes'><a href="../">Cancel</a></p>
+		<p><input type='submit' value='Yes'><a href="{% url 'product-list' %}">Cancel</a></p>
 	</form>
 
 {% endblock %}
